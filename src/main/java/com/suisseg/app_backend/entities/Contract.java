@@ -18,6 +18,7 @@ import java.sql.Timestamp;
 @Setter
 public class Contract {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Integer id;

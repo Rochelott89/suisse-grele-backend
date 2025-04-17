@@ -16,7 +16,14 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class Claim {
+    //anotaciones de clases : @Entity, @NoArgsConstructor, @AllArgsConstructor, @Getter, @Setter
+    //atributos : todos String salvo id (Integer), Timestamp y Enums
+    //anotaciones de atributos :     @Id y @GeneratedValue(strategy = GenerationType.AUTO) para id, @ManyToOne y @JoinColumn para conectar con otros Modelos
+    //constructor : aparte de los que aportan las anotaciones, un constructor public "entity"(entityDTO, Client, Contract)
+    //métodos : public static void mapDTO(entityDTO, entity), public entityDTO toDTO, public String toString
 
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
@@ -44,6 +51,7 @@ public class Claim {
     @JoinColumn(name = "id_Contract")
     private Contract idContract;
 
+
     public Claim(ClaimDTO claimDTO, Client client, Contract contract) {
         this.idTechnique = claimDTO.getId();
         this.title = claimDTO.getTitle();
@@ -56,13 +64,14 @@ public class Claim {
         this.idContract = contract;
     }
 
-    static void mapDTO(ClaimDTO claimDTO, Claim claim) {
+    public static void mapDTO(ClaimDTO claimDTO, Claim claim) {
         claim.setTitle(claimDTO.getTitle());
         claim.setDescription(claimDTO.getDescription());
-        claim.setCreatedAt(claimDTO.getCreatedAt());
         claim.setUpdatedAt(claimDTO.getUpdatedAt());
         claim.setStatus(StatusEnum.valueOf(claimDTO.getStatus()));
         claim.setDamageType(DamageEnum.valueOf(claimDTO.getDamageType()));
+
+        //maybe allow to map and update a client and contract IF admin, maybe in a separate method
 
     }
 

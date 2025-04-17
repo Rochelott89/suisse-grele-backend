@@ -10,6 +10,8 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class ClaimDTO {
+    //attributes : all String sauf TimeStamp
+    //methods : toString
 
     private String id;
     private String title;

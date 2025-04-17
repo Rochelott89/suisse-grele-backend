@@ -3,6 +3,7 @@ package com.suisseg.app_backend.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import java.sql.Timestamp;
 public class Client {
 
     //anotaciones, atributos, constructor ->public "entity"(entityDTO), static void mapDTO(entityDTO, entity), public entityDTO toDTO, public String toString
-
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
